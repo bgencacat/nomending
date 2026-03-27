@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "nomending",
+	"version": "${version}",
+	"name": "NoMending",
+	"description": "Remove mending enchantment from Minecraft.",
+	"authors": [
+		"benbatikan"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/nomending/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.maynkraft.nomending.NoMending"
+		],
+		"client": [
+			"com.maynkraft.nomending.NoMendingClient"
+		]
+	},
+	"mixins": [
+		"nomending.mixins.json",
+		{
+			"config": "nomending.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.18.5",
+		"minecraft": "~26.1",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
