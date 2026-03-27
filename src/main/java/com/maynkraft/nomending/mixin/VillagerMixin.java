@@ -44,9 +44,6 @@ public abstract class VillagerMixin extends AbstractVillager {
 
 		if(offers == null) return;
 
-		System.out.println("asdasdsadasd");
-		level().getServer().getPlayerList().broadcastSystemMessage(Component.literal("Teklifler tetiklendi."), true);
-
 		Registry<Enchantment> registry = this.level().registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
 		Holder<Enchantment> mending = registry.getOrThrow(Enchantments.MENDING);
 		Holder<Enchantment> vanishingCurse = registry.getOrThrow(Enchantments.VANISHING_CURSE);
@@ -55,16 +52,11 @@ public abstract class VillagerMixin extends AbstractVillager {
 			MerchantOffer offer = merchantOffers.get(i);
 			ItemStack item = offer.getResult().copy();
 
-			level().getServer().getPlayerList().broadcastSystemMessage(Component.translatable(item.getDisplayName().toString()), false);
-
 			if(!item.is(Items.ENCHANTED_BOOK)) continue;
 
 			ItemEnchantments enchantments = item.getOrDefault(DataComponents.STORED_ENCHANTMENTS, ItemEnchantments.EMPTY);
-			level().getServer().sendSystemMessage(Component.literal("Enchant kitabı var."));
 
 			if(!enchantments.keySet().contains(mending)) continue;
-			level().getServer().sendSystemMessage(Component.literal("Mending içeriyor."));
-
 
 			ItemEnchantments.Mutable mutable = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
 			mutable.set(vanishingCurse, 1);
